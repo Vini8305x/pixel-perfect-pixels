@@ -1,24 +1,52 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Header } from "@/components/site/Header";
+import { Hero } from "@/components/site/Hero";
+import { TrustBar } from "@/components/site/TrustBar";
+import { Services } from "@/components/site/Services";
+import { About } from "@/components/site/About";
+import { Process } from "@/components/site/Process";
+import { BeforeAfter } from "@/components/site/BeforeAfter";
+import { Reviews } from "@/components/site/Reviews";
+import { Gallery } from "@/components/site/Gallery";
+import { CtaBand } from "@/components/site/CtaBand";
+import { Contact } from "@/components/site/Contact";
+import { Footer } from "@/components/site/Footer";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
+const TITLE = "IronPeak Roofing | Roof Replacement & Repair Contractor";
+const DESCRIPTION =
+  "IronPeak Roofing installs and repairs roofs for American homes and small businesses. Licensed, insured, 5-year workmanship warranty. Get a free estimate today.";
+
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: TITLE },
+      { name: "description", content: DESCRIPTION },
+      { property: "og:title", content: TITLE },
+      { property: "og:description", content: DESCRIPTION },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
+    <div className="min-h-screen bg-background">
+      <Header />
+      <main>
+        <Hero />
+        <TrustBar />
+        <Services />
+        <About />
+        <Process />
+        <BeforeAfter />
+        <Reviews />
+        <Gallery />
+        <CtaBand />
+        <Contact />
+      </main>
+      <Footer />
     </div>
   );
 }
